@@ -22,6 +22,7 @@ jobs:
 
       - name: Build Spring Boot Application
         run: |
+          export JAVA_HOME="${RUNNER_TOOL_CACHE}/jdk11/11.0.11/x64"
           ./mvnw clean package
 
       - name: Build Docker image for Spring Boot
