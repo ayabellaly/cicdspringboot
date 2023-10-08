@@ -7,7 +7,7 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
-    steps:  # Corrected indentation
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
@@ -17,9 +17,12 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Make 'mvnw' executable
+        run: chmod +x mvnw
+
       - name: Build Spring Boot Application
         run: |
-          ./mvnw clean package  # Use the appropriate build command for your project
+          ./mvnw clean package
 
       - name: Build Docker image for Spring Boot
         run: docker build -t your-spring-app-image:1.0 -f Dockerfile .
