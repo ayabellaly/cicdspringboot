@@ -15,17 +15,13 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'
 
       - name: Make 'mvnw' executable
         run: chmod +x mvnw
 
-      - name: Set JAVA_HOME
-        run: |
-          echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" >> $GITHUB_ENV
-
       - name: Build Spring Boot Application
         run: |
+          export JAVA_HOME="${RUNNER_TOOL_CACHE}/jdk11/11.0.11/x64"
           ./mvnw clean package
 
       - name: Build Docker image for Spring Boot
