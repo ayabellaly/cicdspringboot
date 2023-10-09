@@ -10,17 +10,17 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-   
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
         with:
-         java-version: '1.8'
-         distribution: 'adopt'
-         cache: maven
-        
+          java-version: '11'
+          distribution: 'adopt'
+          cache: maven
+
       - name: Build with Maven
         run: mvn clean install
-      
+
       - name: Build Docker image for Spring Boot
         run: docker build -t your-spring-app-image:1.0 -f Dockerfile .
 
